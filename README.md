@@ -39,6 +39,21 @@ You can then navigate to the `src` directory and then run
 ```
 doit
 ```
+
+## Other commands
+
+You can run the unit test, including doctests, with the following command:
+```
+pytest --doctest-modules
+```
+You can build the documentation with:
+```
+rm ./src/.pytest_cache/README.md 
+jupyter-book build -W ./
+```
+Use `del` instead of rm on Windows
+
+
 # General Directory Structure
 
  - The `data/manual` folder is used for the inclusion of datasets from the Federal Reserve (FED), the Federal Reserve Economic Data (FRED), and Markit. It also contains the `He_Kelly_Manela_Factors_And_Test_Assets_monthly.csv` file, which includes the CDS_01 to CDS_20 columns that we aim to replicate in our analysis. This comprehensive compilation of data provides a foundational base for our replication and extension of the empirical analysis presented by He, Kelly, and Manela.
@@ -132,10 +147,11 @@ That should be it!
 
 - Create conda environment from file: `conda env create -f environment.yml`
 - Activate environment for this project: `conda activate blank`
-- Remove conda environment: `conda remove --name myenv --all`
+- Remove conda environment: `conda remove --name blank --all`
 - Create blank conda environment: `conda create --name myenv --no-default-packages`
 - Create blank conda environment with different version of Python: `conda create --name myenv --no-default-packages python` Note that the addition of "python" will install the most up-to-date version of Python. Without this, it may use the system version of Python, which will likely have some packages installed already.
 
 ## `mamba` and `conda` performance issues
 
 Since `conda` has so many performance issues, it's recommended to use `mamba` instead. I recommend installing the `miniforge` distribution. See here: https://github.com/conda-forge/miniforge
+
