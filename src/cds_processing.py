@@ -53,10 +53,10 @@ def process_cds_data():
     #end_of_month_data_quantiled.drop(columns=['level_1','index','date'], inplace=True)
     return end_of_month_data_quantiled
 
-def calc_cds_monthly(method = 'median'):
-    if Path(OUTPUT_DIR / 'cds_monthly_spread_median.csv').exists() and method == 'median':
-        return pd.read_csv(OUTPUT_DIR / 'cds_monthly_spread_median.csv')
-    df = process_cds_data()
+def calc_cds_monthly(cds_data, method):
+    #if Path(OUTPUT_DIR / 'cds_monthly_spread_median.csv').exists() and method == 'median':
+        #return pd.read_csv(OUTPUT_DIR / 'cds_monthly_spread_median.csv')
+    df = cds_data.copy()
     df.set_index('quantile', inplace = True)
 
     def weighted_mean(data):
@@ -76,5 +76,5 @@ def calc_cds_monthly(method = 'median'):
 
     # Rename the columns to follow the 'cds_{quantile}' format
     pivot_table.columns = [f'cds_{int(col)}' for col in pivot_table.columns]
-    pivot_table.to_csv(OUTPUT_DIR / 'cds_monthly_spread_median.csv')
+    pivot_table.to_csv(OUTPUT_DIR / 'cds_monthly_spread_{method}.csv')
     return pivot_table
