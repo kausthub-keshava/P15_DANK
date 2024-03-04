@@ -21,9 +21,9 @@ def assign_quantiles(group, n_quantiles=20):
 def resample_end_of_month(data):
     return data.resample('M').last()
 
-def process_cds_data():
+def process_cds_data(cds_data_dict):
 
-    cds_data_dict = get_cds_data()
+    #cds_data_dict = get_cds_data()
 
     cds_data = pd.concat(cds_data_dict.values(), axis=0)
 
