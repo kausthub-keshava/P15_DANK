@@ -33,17 +33,8 @@ def task_interest_rates():
         'file_dep': ['src/interest_rates.py'],
     }
 
-'''
+ 
 
-def task_variables_analysis():
-    return {
-        'actions': ['jupyter nbconvert --to notebook --execute src/variables_analysis.ipynb'],
-        'file_dep': ['src/variables_analysis.ipynb'],
-    }
-'''
-    
-
-# Function to run tests
 def run_tests():
     test_files = [
         'src/test_calc_cds_returns.py',
