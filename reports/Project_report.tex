@@ -11,6 +11,7 @@
 % Useful packages
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{float}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 
 \title{Cash-flow maturity and risk premia in CDS markets.}
@@ -29,8 +30,8 @@ The present project is an academic exercise designed to replicate and analyze th
 
 This work is designed to not only corroborate the meticulous work of \cite{kelly2017} but also to substantiate the theoretical implications proposed by \cite{Palhares2013} concerning the maturation of cash-flows and their correlation with the risk premia observed in the market for credit default swaps.\\
 
-The paper is structured as follows. Section 2 introduces the model of CDS returns, detailing the theoretical framework and the mathematical underpinnings that guide the analysis. Section 3 provides a description of the data sourced from Markit and presents summary statistics to offer insights into the dataset's characteristics and the underlying market dynamics. Section 4 delves into the estimated CDS returns, employing the proposed model to analyze the dataset and interpret the results. The findings reveal that [WRITE RESULTS], highlighting the implications of [WRITE KEY VARIABLES] on CDS returns.  In conclusion, the paper demonstrates [WRITE MAIN CONCLUSION].
 
+The organization of the paper is as follows: Section 2 elucidates the CDS returns model, outlining the theoretical framework and mathematical foundations that inform our analysis. In Section 3, we describe the data obtained from Markit, providing summary statistics that shed light on the dataset's properties and the prevailing market trends. Section 4 examines the estimated CDS returns, applying the proposed model to assess the dataset and interpret the findings. The conclusion in Section 5 establishes that this study aligns with the trends identified in Kelly (2017), showing similar patterns in the results. While the post-2008 estimated CDS returns generally match the actual returns, portfolios with higher returns exhibit an escalating discrepancy.
 
 \section{Credit default swap returns definition.}
 
@@ -75,7 +76,7 @@ where $\text{CDS}$ is the spread and $L$ is the loss given default (assumed to b
 In this section, We first describe the data sources that we use and give an overview of the data. Then how we calculated CDS returns
 
 
-We utilized the Par Spread data corresponding to a five-year tenor sourced from CRSP, spanning the years 2001 to 2004, for our analysis of Credit Default Swap (CDS) spreads. This dataset encompassed all available tickers, which we then categorized into quantiles. Subsequently, we arranged these quantiles to form 20 distinct portfolios sequentially. Additionally, we applied a smoothing technique specifically to the portfolio corresponding to the 20th quantile. 
+We use the Par Spread data corresponding to a five-year tenor sourced from CRSP, spanning the years 2001 to 2004, for our analysis of Credit Default Swap (CDS) spreads. This dataset encompassed all available tickers, which we then categorized into quantiles. Subsequently, we arranged these quantiles to form 20 distinct portfolios sequentially. Additionally, we applied a smoothing technique specifically to the portfolio corresponding to the 20th quantile. 
 
 %insert graphs
 %![Image Description](../assets/cds_box_plot.png)
@@ -109,22 +110,135 @@ Following equation (1), (2) and the fact that, according to \cite{kelly2017}, th
 
 2) Combine the risky durations with change in the CDS spreads to calculate the CDS returns. 
 
-The results are: 
+The results are for each method (mean, median and weighted average) and for each portfolio are:
 
-%insert graph of comparison insample
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{../assets/cds_returns_boxplot_median.png}
+    \caption{\label{fig:myplot}CDS returns estimation with median method.}
+    \end{figure}
 
-Starting in 2008, the computed returns closely align with the real returns, with the exception of cds_20. This particular case stands out as an outlier due to its significantly higher spreads, known for their unpredictability. The paper does not provide clarity on how this anomaly was addressed, leading to the observed discrepancies in results.\\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{../assets/cds_returns_boxplot_allportfolios.png}
+    \caption{\label{fig:myplot}CDS returns estimation with mean method.}
+    \end{figure}   
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{../assets/cds_returns_boxplots_weighted.png}
+    \caption{\label{fig:myplot}CDS returns estimation with weighted method.}
+    \end{figure}       
+
+Now, comparing with the \cite{kelly2017} data, 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{../assets/returns_cds1_insample.png}
+    \caption{\label{fig:myplot}Portfolio 1 CDS returns estimated.}
+    \end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{../assets/returns_cds5_insample.png}
+    \caption{\label{fig:myplot}Portfolio 5 CDS returns estimated.}
+    \end{figure}    
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{../assets/returns_cds10_insample.png}
+    \caption{\label{fig:myplot}Portfolio 10 CDS returns estimated.}
+    \end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{../assets/returns_cds15_insample.png}
+    \caption{\label{fig:myplot}Portfolio 15 CDS returns estimated.}
+    \end{figure}          
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{../assets/returns_cds19_insample.png}
+    \caption{\label{fig:myplot}Portfolio 19 CDS returns estimated.}
+    \end{figure}   
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{../assets/returns_cds20_insample.png}
+    \caption{\label{fig:myplot}Portfolio 20 CDS returns estimated.}
+    \end{figure}   
+
+Starting in 2008, the computed returns closely align with the real returns, with the exception of $cds_{20}$\\ 
+
+This particular case stands out as an outlier due to its significantly higher spreads, known for their unpredictability. The paper does not provide clarity on how this anomaly was addressed, leading to the observed discrepancies in results.\\
 
 We evaluate the discrepancy between the actual and computed returns by employing various methodologies. The accompanying tables illustrate that, for the entire sample period, the average error remains under 1\% for the majority of the portfolios. Notably, the largest errors are observed in cds_19 and cds_20.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{../assets/Return difference_median method.png}
+    \caption{\label{fig:myplot}Estimation error with median method.}
+    \end{figure}          
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{../assets/Return difference_mean method.png}
+    \caption{\label{fig:myplot}Estimation error with mean method.}
+    \end{figure}   
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{../assets/Return difference_weighted method.png}
+    \caption{\label{fig:myplot}Estimation error with weighted method.}
+    \end{figure} 
+
+
+
 \subsection*{CDS returns from 2012 onwards}
 
+The CDS returns estimations out sample for each method (mean, median and weighted average) are:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{../assets/returns_cds1_2013_2024.png}
+    \caption{\label{fig:myplot}Portfolio 1 CDS returns estimated outsample.}
+    \end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{../assets/returns_cds5_2013_2024.png}
+    \caption{\label{fig:myplot}Portfolio 5 CDS returns estimated outsample.}
+    \end{figure}    
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{../assets/returns_cds10_2013_2024.png}
+    \caption{\label{fig:myplot}Portfolio 10 CDS returns estimated outsample.}
+    \end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{../assets/returns_cds15_2013_2024.png}
+    \caption{\label{fig:myplot}Portfolio 15 CDS returns estimated outsample.}
+    \end{figure}          
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{../assets/returns_cds19_2013_2024.png}
+    \caption{\label{fig:myplot}Portfolio 19 CDS returns estimated outsample.}
+    \end{figure}   
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{../assets/returns_cds20_2013_2024.png}
+    \caption{\label{fig:myplot}Portfolio 20 CDS returns estimated outsample.}
+    \end{figure}   
+    
 
 
 \section{Conclusion.}
 
-% ADD RESULTS AND GRAPHS, CHECK IF THE NEGATIVE RELATION IS TRUE OR ADD SOME CONCLUSION
-
+In conclusion, our research echoes the observations of Kelly (2017), demonstrating analogous patterns in the results. After 2008, our model's estimates of CDS returns align closely with the actual figures, with the notable exception of portfolios in the higher quantiles, such as cds\_{19} and cds\_{20}. The lack of a detailed methodological explanation in the original study for addressing these outliers contributes to the discrepancies we observe in the outcomes.
 
 \bibliographystyle{alpha}
 \bibliography{bibliography}
