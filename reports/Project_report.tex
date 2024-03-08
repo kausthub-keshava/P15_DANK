@@ -103,6 +103,23 @@ We extrapolated these rates to quarterly frequency with a cubic function. This i
 
 
 \section{Credit default swap returns estimation.}
+Following equation (1), (2) and the fact that, according to \cite{kelly2017}, the CDS definition is assuming a short CDS strategy, estimations relates on:
+
+1) Calibrate the risky durations for each portfolio of CDS products. This concept of risky duration is to capture the credit risk present in an interest rate sensitive product. The usual way we understand duration for a fixed income security is that it is the interst rate sensitivity. He Kelly uses Palhares concept of risky duration which brings in the credit risk component into duration by utilizing a loss given default parameter (assumed to be 0.6) and the CDS spreads themselves. 
+
+2) Combine the risky durations with change in the CDS spreads to calculate the CDS returns. 
+
+The results are: 
+
+%insert graph of comparison insample
+
+Starting in 2008, the computed returns closely align with the real returns, with the exception of cds_20. This particular case stands out as an outlier due to its significantly higher spreads, known for their unpredictability. The paper does not provide clarity on how this anomaly was addressed, leading to the observed discrepancies in results.\\
+
+We evaluate the discrepancy between the actual and computed returns by employing various methodologies. The accompanying tables illustrate that, for the entire sample period, the average error remains under 1\% for the majority of the portfolios. Notably, the largest errors are observed in cds_19 and cds_20.
+
+\subsection*{CDS returns from 2012 onwards}
+
+
 
 \section{Conclusion.}
 
