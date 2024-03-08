@@ -59,7 +59,7 @@ def calc_cds_return(start_date, end_date,Method):
     risky_duration_shifted = risky_duration.shift(1)
     cds_spread_shifted = cds_spread.shift(1)
     cds_spread_change = cds_spread.diff()
-    cds_return = ((cds_spread_shifted/12) + (cds_spread_change * risky_duration_shifted))
+    cds_return = -((cds_spread_shifted/12) + (cds_spread_change * risky_duration_shifted))
     return cds_return
 
 def calc_difference(cds_return, actual_return):
